@@ -15,7 +15,10 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+   "salt>=2015",
+   'click>=4.0',
+   'prompt-toolkit==0.57',
+   'Pygments >= 2.0',
 ]
 
 test_requirements = [

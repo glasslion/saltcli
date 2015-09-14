@@ -15,7 +15,6 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-   "salt>=2015",
    'click>=4.0',
    'prompt-toolkit==0.57',
    'Pygments >= 2.0',

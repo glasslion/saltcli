@@ -24,6 +24,12 @@ test_requirements = [
     # TODO: put package test requirements here
 ]
 
+extra_requirements = {
+    'salt': [
+        'salt >= 2015'
+    ],
+}
+
 setup(
     name='saltcli',
     version='0.0.1',
@@ -39,6 +45,7 @@ setup(
                  'saltcli'},
     include_package_data=True,
     install_requires=requirements,
+    extra_requires=extra_requirements,
     entry_points={
         'console_scripts': 'saltcli = saltcli.main:cli'
     },

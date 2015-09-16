@@ -82,3 +82,14 @@ dist: clean
 
 install: clean
 	python setup.py install
+
+run-docker:
+	sudo docker run -d --name=saltdocker_master -h master -p 4505 -p 4506 \
+	    -p 8080 -p 8081 -e SALT_NAME=master -e SALT_USE=master \
+	    -v `pwd`:/src/saltcli:rw jacksoncage/salt  /start.sh
+
+stop-docker:
+	sudo docker stop saltdocker_master
+
+rm-docker:
+	sudo docker rm saltdocker_master

@@ -1,0 +1,5 @@
+click>=4.0
+prompt-toolkit==0.57
+Pygments >= 2.0
+pytest
+

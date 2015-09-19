@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import pip
+from pip.req import parse_requirements
 
 try:
     from setuptools import setup
@@ -14,15 +15,15 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
-   'click>=4.0',
-   'prompt-toolkit==0.57',
-   'Pygments >= 2.0',
-]
+requirements = [str(req.req) for req in parse_requirements(
+    'requirements/prod.txt',
+    session=pip.download.PipSession()
+)]
 
-test_requirements = [
-    # TODO: put package test requirements here
-]
+test_requirements = [str(req.req) for req in parse_requirements(
+    'requirements/test.txt',
+    session=pip.download.PipSession()
+)]
 
 extra_requirements = {
     'salt': [

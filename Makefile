@@ -88,7 +88,8 @@ docker-build:
 
 docker-run:
 	sudo docker run -d --name=saltcli -h master -e SALT_NAME=master -e SALT_USE=master \
-	    -v `pwd`:/src/saltcli:rw glasslion/saltcli
+	    -p 4505 -p 4506:4506 -p 8080 -p 8081 -v `pwd`:/src/saltcli:rw \
+	    	    -v /tmp/saltcli/cache:/var/cache/salt/master:rw glasslion/saltcli
 
 docker-stop:
 	sudo docker stop saltcli

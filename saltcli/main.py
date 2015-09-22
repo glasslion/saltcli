@@ -50,14 +50,13 @@ class SaltCli(object):
         while True:
             try:
                 document = self.cli.run()
-            except OptionError as ex:
-                self.logger.debug('Error: %r.', ex)
-                self.logger.error("traceback: %r", traceback.format_exc())
-                click.secho(ex.msg, fg='red')
-            except DockerPermissionException as ex:
-                self.logger.debug('Permission exception: %r.', ex)
-                self.logger.error("traceback: %r", traceback.format_exc())
-                click.secho(ex.message, fg='red')
+
+                if quit_command(document.text):
+                    raise EOFError
+
+            except KeyboardInterrupt:
+                # user pressed Ctrl + C
+                    click.echo('')
             except EOFError:
                 break
             except Exception as ex:
@@ -66,9 +65,16 @@ class SaltCli(object):
                 click.secho("{0}".format(ex), fg='red')
                 break
 
-        self.revert_less_opts()
-        self.write_config_file()
         print('Goodbye!')
+
+
+def quit_command(sql):
+    return (sql.strip().lower() == 'exit'
+            or sql.strip().lower() == 'quit'
+            or sql.strip() == '\q'
+            or sql.strip() == ':q')
+
+
 @click.command()
 def cli():
     """

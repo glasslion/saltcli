@@ -10,4 +10,4 @@ pdbpp==0.8.3
 
 # For pypi deployment with travis
 cryptography==1.0.1
-PyYAML==3.11
+PyYAML==5.4
